@@ -1,0 +1,116 @@
+# Commitlint Configuration
+# Rules for validating commit messages
+
+extends:
+  - '@commitlint/config-conventional'
+
+parserPreset:
+  parserOpts:
+    headerPattern: '^(feat|fix|docs|style|refactor|perf|test|chore|ci|revert){1}(\(.+\))?!?: .{1,50}'
+    headerCorrespondence:
+      - type
+      - scope
+      - subject
+
+rules:
+  body-leading-blank:
+    - 2
+    - always
+  body-max-line-length:
+    - 2
+    - always
+    - 100
+  footer-leading-blank:
+    - 2
+    - always
+  footer-max-line-length:
+    - 2
+    - always
+    - 100
+  footer-max-word-length:
+    - 2
+    - always
+    - 100
+  header-full-stop:
+    - 2
+    - never
+    - .
+  header-max-length:
+    - 2
+    - always
+    - 100
+  header-min-length:
+    - 2
+    - always
+    - 10
+  references-empty:
+    - 2
+    - never
+  scope-case:
+    - 2
+    - always
+    - lowercase
+  scope-empty:
+    - 0
+    - optional
+  scope-enum:
+    - 2
+    - always
+      - auth
+      - users
+      - posts
+      - comments
+      - likes
+      - api
+      - controllers
+      - models
+      - migrations
+      - db
+      - docker
+      - frontend
+      - docs
+      - config
+      - deps
+  subject-case:
+    - 2
+    - never
+      - uppercase
+      - start-case
+      - pascal-case
+      - upper-case
+  subject-empty:
+    - 2
+    - never
+  subject-full-stop:
+    - 2
+    - never
+    - .
+  type-case:
+    - 2
+    - always
+    - lowercase
+  type-empty:
+    - 2
+    - never
+  type-enum:
+    - 2
+    - always
+      - feat
+      - fix
+      - docs
+      - style
+      - refactor
+      - perf
+      - test
+      - chore
+      - ci
+      - revert
+
+# Exemples de commits valides:
+# feat(auth): add user registration endpoint
+# fix(posts): resolve cascade delete issue
+# docs(api): update endpoint documentation
+# refactor(models): simplify user relationships
+# test(auth): add unit tests for login
+# chore: update dependencies
+# ci: setup GitHub Actions

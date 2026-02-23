@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->comment('Auteur du post');
             $table->text('content')->comment('Contenu du post');
-            $table->longBlob('image')->nullable()->comment('Image attachée (base64 ou URL)');
+            $table->longText('image')->nullable()->comment('Image attachée (base64 ou URL)');
             $table->timestamps();
         });
     }
