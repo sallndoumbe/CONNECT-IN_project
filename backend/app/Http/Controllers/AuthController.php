@@ -10,17 +10,23 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    /**
-     * Register - Créer un nouveau compte utilisateur
-     */
+    
     public function register(Request $request)
     {
         // Validation des données
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:users,email',
-            'firstname' => 'required|string|min:2',
-            'lastname' => 'required|string|min:2',
+            'name' => 'required|string|min:2',
             'password' => 'required|string|min:8|confirmed',
+        ], [
+            'email.required' => 'L\'email est requis',
+            'email.email' => 'L\'email doit être valide',
+            'email.unique' => 'Cet email est déjà utilisé',
+            'name.required' => 'Le nom est requis',
+            'name.min' => 'Le nom doit contenir au moins 2 caractères',
+            'password.required' => 'Le mot de passe est requis',
+            'password.min' => 'Le mot de passe doit contenir au moins 8 caractères',
+            'password.confirmed' => 'Les mots de passe ne correspondent pas',
         ]);
 
         if ($validator->fails()) {
@@ -30,26 +36,25 @@ class AuthController extends Controller
         // Créer l'utilisateur
         $user = User::create([
             'email' => $request->email,
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
+            'name' => $request->name,
             'password' => Hash::make($request->password),
         ]);
 
-        // Retourner la réponse
+        // Générer le token Sanctum
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        // Retourner la réponse avec token
         return response()->json([
-            'message' => 'Inscription réussie',
+            'token' => $token,
             'user' => [
                 'id' => $user->id,
                 'email' => $user->email,
-                'firstname' => $user->firstname,
-                'lastname' => $user->lastname,
+                'name' => $user->name,
             ],
         ], 201);
     }
 
-    /**
-     * Login - Connecter un utilisateur
-     */
+    
     public function login(Request $request)
     {
         // Validation des données
@@ -71,26 +76,24 @@ class AuthController extends Controller
             ], 401);
         }
 
-        // Authentifier l'utilisateur
-        Auth::login($user);
+        // Générer le token Sanctum
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'message' => 'Connexion réussie',
+            'token' => $token,
             'user' => [
                 'id' => $user->id,
                 'email' => $user->email,
-                'firstname' => $user->firstname,
-                'lastname' => $user->lastname,
+                'name' => $user->name,
             ],
         ], 200);
     }
 
-    /**
-     * Logout - Déconnecter un utilisateur
-     */
+    
     public function logout(Request $request)
     {
-        Auth::logout();
+        // Révoquer le token de l'utilisateur actuel
+        $request->user()->currentAccessToken()->delete();
 
         return response()->json([
             'message' => 'Déconnexion réussie',
