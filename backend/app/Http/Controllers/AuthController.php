@@ -16,14 +16,17 @@ class AuthController extends Controller
         // Validation des données
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:users,email',
-            'name' => 'required|string|min:2',
+            'firstname' => 'required|string|min:2',
+            'lastname' => 'required|string|min:2',
             'password' => 'required|string|min:8|confirmed',
         ], [
             'email.required' => 'L\'email est requis',
             'email.email' => 'L\'email doit être valide',
             'email.unique' => 'Cet email est déjà utilisé',
-            'name.required' => 'Le nom est requis',
-            'name.min' => 'Le nom doit contenir au moins 2 caractères',
+            'firstname.required' => 'Le prénom est requis',
+            'firstname.min' => 'Le prénom doit contenir au moins 2 caractères',
+            'lastname.required' => 'Le nom est requis',
+            'lastname.min' => 'Le nom doit contenir au moins 2 caractères',
             'password.required' => 'Le mot de passe est requis',
             'password.min' => 'Le mot de passe doit contenir au moins 8 caractères',
             'password.confirmed' => 'Les mots de passe ne correspondent pas',
@@ -36,7 +39,8 @@ class AuthController extends Controller
         // Créer l'utilisateur
         $user = User::create([
             'email' => $request->email,
-            'name' => $request->name,
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
             'password' => Hash::make($request->password),
         ]);
 
@@ -49,7 +53,8 @@ class AuthController extends Controller
             'user' => [
                 'id' => $user->id,
                 'email' => $user->email,
-                'name' => $user->name,
+                'firstname' => $user->firstname,
+                'lastname' => $user->lastname,
             ],
         ], 201);
     }
@@ -84,7 +89,8 @@ class AuthController extends Controller
             'user' => [
                 'id' => $user->id,
                 'email' => $user->email,
-                'name' => $user->name,
+                'firstname' => $user->firstname,
+                'lastname' => $user->lastname,
             ],
         ], 200);
     }

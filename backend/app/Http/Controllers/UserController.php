@@ -21,7 +21,8 @@ class UserController extends Controller
         return response()->json([
             'id' => $user->id,
             'email' => $user->email,
-            'name' => $user->name,
+            'firstname' => $user->firstname,
+            'lastname' => $user->lastname,
             'bio' => $user->bio,
             'image' => $user->image,
             'created_at' => $user->created_at,
@@ -35,7 +36,8 @@ class UserController extends Controller
 
         // Validation
         $validator = Validator::make($request->all(), [
-            'name' => 'sometimes|string|min:2',
+            'firstname' => 'sometimes|string|min:2',
+            'lastname' => 'sometimes|string|min:2',
             'bio' => 'sometimes|string|max:500',
             'image' => 'sometimes|nullable|string', // base64 ou URL
         ]);
@@ -45,7 +47,7 @@ class UserController extends Controller
         }
 
         // Mettre à jour
-        $user->update($request->only(['name', 'bio', 'image']));
+        $user->update($request->only(['firstname', 'lastname', 'bio', 'image']));
 
         return response()->json([
             'message' => 'Profil mis à jour',
@@ -106,7 +108,8 @@ class UserController extends Controller
             if (!$deletedUser) {
                 $deletedUser = User::create([
                     'email' => 'deleted@user.local',
-                    'name' => 'Utilisateur supprimé',
+                    'firstname' => 'Utilisateur',
+                    'lastname' => 'Supprimé',
                     'password' => Hash::make(uniqid()),
                 ]);
             }

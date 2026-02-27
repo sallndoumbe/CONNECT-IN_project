@@ -52,4 +52,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class);
     }
+
+     /* Relation : Chats de cet utilisateur*/
+    public function chats()
+    {
+        return $this->belongsToMany(Chat::class, 'chat_user')->withTimestamps();
+    }
 }
