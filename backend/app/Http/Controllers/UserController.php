@@ -122,8 +122,8 @@ class UserController extends Controller
             ]);
         } else {
             // Option 2 : Supprimer tous les posts et commentaires
-            Post::where('user_id', $user->id)->delete(); 
             Comment::where('user_id', $user->id)->delete();
+            Post::where('user_id', $user->id)->delete(); // Cela supprime aussi les commentaires restants via cascade
         }
 
         // Supprimer les likes (toujours)

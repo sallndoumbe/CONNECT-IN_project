@@ -9,7 +9,7 @@ class Like extends Model
 {
     use HasFactory;
 
-    public $timestamps = false; // Pas d'updated_at, seulement created_at
+    const UPDATED_AT = null; // Pas de colonne updated_at, seulement created_at
 
     protected $fillable = [
         'post_id',
