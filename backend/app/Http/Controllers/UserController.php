@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    /**
-     * Récupérer le profil de l'utilisateur connecté
-     */
+     /* Récupérer le profil de l'utilisateur connecté */
     public function profile()
     {
         $user = Auth::user();
@@ -23,25 +21,21 @@ class UserController extends Controller
         return response()->json([
             'id' => $user->id,
             'email' => $user->email,
-            'firstname' => $user->firstname,
-            'lastname' => $user->lastname,
+            'name' => $user->name,
             'bio' => $user->bio,
             'image' => $user->image,
             'created_at' => $user->created_at,
         ], 200);
     }
 
-    /**
-     * Mettre à jour le profil de l'utilisateur
-     */
+    /* Mettre à jour le profil de l'utilisateur */
     public function updateProfile(Request $request)
     {
         $user = Auth::user();
 
         // Validation
         $validator = Validator::make($request->all(), [
-            'firstname' => 'sometimes|string|min:2',
-            'lastname' => 'sometimes|string|min:2',
+            'name' => 'sometimes|string|min:2',
             'bio' => 'sometimes|string|max:500',
             'image' => 'sometimes|nullable|string', // base64 ou URL
         ]);
@@ -51,32 +45,22 @@ class UserController extends Controller
         }
 
         // Mettre à jour
-        $user->update($request->only(['firstname', 'lastname', 'bio', 'image']));
+        $user->update($request->only(['name', 'bio', 'image']));
 
         return response()->json([
             'message' => 'Profil mis à jour',
-            'user' => [
-                'id' => $user->id,
-                'email' => $user->email,
-                'firstname' => $user->firstname,
-                'lastname' => $user->lastname,
-                'bio' => $user->bio,
-                'image' => $user->image,
-            ],
         ], 200);
     }
 
-    /**
-     * Changer le mot de passe
-     */
+     /* Changer le mot de passe*/
     public function changePassword(Request $request)
     {
         $user = Auth::user();
 
-        // Validation
+        // Validation - accepte 'password'/'password_confirmation' pour compatibilité frontend
         $validator = Validator::make($request->all(), [
             'current_password' => 'required|string',
-            'new_password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
         if ($validator->fails()) {
@@ -92,7 +76,7 @@ class UserController extends Controller
 
         // Mettre à jour le mot de passe
         $user->update([
-            'password' => Hash::make($request->new_password),
+            'password' => Hash::make($request->password),
         ]);
 
         return response()->json([
@@ -100,14 +84,6 @@ class UserController extends Controller
         ], 200);
     }
 
-    /**
-     * Supprimer le compte utilisateur
-     * 
-     * Options:
-     * - keep_content: true/false
-     *   - true : garder les posts/commentaires, les attribuer à "Utilisateur supprimé"
-     *   - false : supprimer tous les posts et commentaires (les likes sont toujours supprimés)
-     */
     public function deleteAccount(Request $request)
     {
         $user = Auth::user();
@@ -124,15 +100,13 @@ class UserController extends Controller
         $keepContent = $request->input('keep_content', false);
 
         if ($keepContent) {
-            // Option 1 : Garder le contenu (attribuer à "Utilisateur supprimé")
-            // Créer un utilisateur "Utilisateur supprimé" s'il n'existe pas
+
             $deletedUser = User::where('email', 'deleted@user.local')->first();
             
             if (!$deletedUser) {
                 $deletedUser = User::create([
                     'email' => 'deleted@user.local',
-                    'firstname' => 'Utilisateur',
-                    'lastname' => 'supprimé',
+                    'name' => 'Utilisateur supprimé',
                     'password' => Hash::make(uniqid()),
                 ]);
             }
@@ -148,7 +122,7 @@ class UserController extends Controller
             ]);
         } else {
             // Option 2 : Supprimer tous les posts et commentaires
-            Post::where('user_id', $user->id)->delete(); // Cela supprime aussi les commentaires via cascade
+            Post::where('user_id', $user->id)->delete(); 
             Comment::where('user_id', $user->id)->delete();
         }
 
