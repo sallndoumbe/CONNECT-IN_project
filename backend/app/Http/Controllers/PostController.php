@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
-    /**
-     * Lister tous les posts avec pagination
-     */
+     /* Lister tous les posts avec pagination*/
     public function index(Request $request)
     {
         $perPage = $request->query('per_page', 10);
@@ -23,9 +21,7 @@ class PostController extends Controller
         return response()->json($posts, 200);
     }
 
-    /**
-     * Récupérer un post spécifique
-     */
+     /* Récupérer un post spécifique */
     public function show($id)
     {
         $post = Post::with(['user', 'comments.user', 'likes'])->find($id);
@@ -37,9 +33,7 @@ class PostController extends Controller
         return response()->json($post, 200);
     }
 
-    /**
-     * Créer un nouveau post
-     */
+     /* Créer un nouveau post */
     public function store(Request $request)
     {
         // Validation
@@ -59,15 +53,13 @@ class PostController extends Controller
             'image' => $request->image ?? null,
         ]);
 
-        return response()->json([
-            'message' => 'Post créé',
-            'post' => $post->load('user'),
-        ], 201);
+        // Recharger avec les relations
+        $post->load('user');
+
+        return response()->json($post, 201);
     }
 
-    /**
-     * Modifier un post
-     */
+     /* Modifier un post */
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
@@ -97,16 +89,14 @@ class PostController extends Controller
             'image' => $request->image ?? $post->image,
         ]);
 
-        return response()->json([
-            'message' => 'Post mis à jour',
-            'post' => $post,
-        ], 200);
+        // Recharger avec les relations
+        $post->load('user');
+
+        return response()->json($post, 200);
     }
 
-    /**
-     * Supprimer un post
-     * Note: Les commentaires et likes sont automatiquement supprimés via cascade
-     */
+     /* Supprimer un post*/
+     /* Note: Les commentaires et likes sont automatiquement supprimés via cascade*/
     public function destroy($id)
     {
         $post = Post::find($id);
