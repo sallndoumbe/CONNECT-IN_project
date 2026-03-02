@@ -4,10 +4,11 @@ import { useAuth } from '../hooks/useAuth'
 import { Error } from '../components/UI'
 
 export function Register() {
-  const [name, setName] = useState('')
+  const [firstname, setFirstname] = useState('')
+  const [lastname, setLastname] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [passwordConfirm, setPasswordConfirm] = useState('')
+  const [passwordConfirmation, setPasswordConfirmation] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const { register } = useAuth()
@@ -17,17 +18,20 @@ export function Register() {
     e.preventDefault()
     setError('')
 
-    if (password !== passwordConfirm) {
+    if (password !== passwordConfirmation) {
       setError('Les mots de passe ne correspondent pas')
       return
     }
 
     setLoading(true)
     try {
-      await register(name, email, password, passwordConfirm)
+      await register(firstname, lastname, email, password, passwordConfirmation)
       navigate('/home')
     } catch (err) {
-      setError(err.response?.data?.message || 'Erreur lors de l\'inscription')
+      const errorMessage = err.response?.data?.errors 
+        ? Object.values(err.response.data.errors).flat().join(', ')
+        : err.response?.data?.message || 'Erreur lors de l\'inscription'
+      setError(errorMessage)
     } finally {
       setLoading(false)
     }
@@ -49,11 +53,21 @@ export function Register() {
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             <div>
+              <label className="block text-sm font-medium text-[#1f3b3b]">Prénom</label>
+              <input
+                type="text"
+                value={firstname}
+                onChange={(e) => setFirstname(e.target.value)}
+                className="mt-1 w-full rounded-lg border border-[#e2d9cf] bg-white px-4 py-2 text-sm focus:border-[#1f3b3b] focus:outline-none"
+                required
+              />
+            </div>
+            <div>
               <label className="block text-sm font-medium text-[#1f3b3b]">Nom</label>
               <input
                 type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={lastname}
+                onChange={(e) => setLastname(e.target.value)}
                 className="mt-1 w-full rounded-lg border border-[#e2d9cf] bg-white px-4 py-2 text-sm focus:border-[#1f3b3b] focus:outline-none"
                 required
               />
@@ -84,8 +98,8 @@ export function Register() {
               </label>
               <input
                 type="password"
-                value={passwordConfirm}
-                onChange={(e) => setPasswordConfirm(e.target.value)}
+                value={passwordConfirmation}
+                onChange={(e) => setPasswordConfirmation(e.target.value)}
                 className="mt-1 w-full rounded-lg border border-[#e2d9cf] bg-white px-4 py-2 text-sm focus:border-[#1f3b3b] focus:outline-none"
                 required
               />
