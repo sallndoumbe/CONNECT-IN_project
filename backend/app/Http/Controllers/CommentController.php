@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {
-    /**
-     * Lister tous les commentaires d'un post
-     */
+     /* Lister tous les commentaires d'un post*/
     public function index($post_id)
     {
         $post = Post::find($post_id);
@@ -26,14 +24,10 @@ class CommentController extends Controller
             ->latest()
             ->get();
 
-        return response()->json([
-            'data' => $comments,
-        ], 200);
+        return response()->json($comments, 200);
     }
 
-    /**
-     * Créer un nouveau commentaire
-     */
+     /* Créer un nouveau commentaire */
     public function store(Request $request, $post_id)
     {
         $post = Post::find($post_id);
@@ -58,15 +52,15 @@ class CommentController extends Controller
             'content' => $request->content,
         ]);
 
-        return response()->json([
-            'message' => 'Commentaire créé',
-            'comment' => $comment->load('user'),
-        ], 201);
+        // Recharger avec les relations
+        $comment->load('user');
+
+        return response()->json($comment, 201);
     }
 
-    /**
-     * Mettre à jour un commentaire
-     */
+    
+     /* Mettre à jour un commentaire */
+     
     public function update(Request $request, $id)
     {
         $comment = Comment::find($id);
@@ -94,15 +88,16 @@ class CommentController extends Controller
             'content' => $request->content,
         ]);
 
-        return response()->json([
-            'message' => 'Commentaire mis à jour',
-            'comment' => $comment,
-        ], 200);
+        // Recharger avec les relations
+        $comment->load('user');
+
+        return response()->json($comment, 200);
     }
 
-    /**
-     * Supprimer un commentaire
-     */
+    
+
+     /* Supprimer un commentaire */
+
     public function destroy($id)
     {
         $comment = Comment::find($id);
