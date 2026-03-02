@@ -50,7 +50,12 @@ class UserController extends Controller
         $user->update($request->only(['firstname', 'lastname', 'bio', 'image']));
 
         return response()->json([
-            'message' => 'Profil mis à jour',
+            'id' => $user->id,
+            'email' => $user->email,
+            'firstname' => $user->firstname,
+            'lastname' => $user->lastname,
+            'bio' => $user->bio,
+            'image' => $user->image,
         ], 200);
     }
 
