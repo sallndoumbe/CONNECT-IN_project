@@ -52,6 +52,19 @@ class CommentController extends Controller
             'content' => $request->content,
         ]);
 
+        // Créer une notification si ce n'est pas son propre post
+        if ($post->user_id !== Auth::id()) {
+            NotificationController::notify(
+                $post->user_id,
+                Auth::id(),
+                'comment',
+                'Nouveau commentaire',
+                Auth::user()->firstname . ' a commenté votre post',
+                $post_id,
+                $comment->id
+            );
+        }
+
         // Recharger avec les relations
         $comment->load('user');
 
