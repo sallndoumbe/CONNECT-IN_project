@@ -91,7 +91,46 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function deleteAccount(Request $request)
+    /**
+     * Mettre à jour la photo de profil
+     */
+    public function updateProfilePicture(Request $request)
+    {
+        $user = Auth::user();
+
+        // Validation
+        $validator = Validator::make($request->all(), [
+            'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // 5MB max
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        // Supprimer l'ancienne photo si elle existe
+        if ($user->profile_picture) {
+            \Illuminate\Support\Facades\Storage::disk('public')->delete(str_replace(\Illuminate\Support\Facades\Storage::disk('public')->url(''), '', $user->profile_picture));
+        }
+
+        // Sauvegarder la nouvelle photo
+        $file = $request->file('profile_picture');
+        $filename = 'profile-pictures/' . $user->id . '_' . time() . '.' . $file->getClientOriginalExtension();
+        \Illuminate\Support\Facades\Storage::disk('public')->put($filename, file_get_contents($file));
+        $photoUrl = \Illuminate\Support\Facades\Storage::disk('public')->url($filename);
+
+        // Mettre à jour l'utilisateur
+        $user->update(['profile_picture' => $photoUrl]);
+
+        return response()->json([
+            'profile_picture' => $user->profile_picture,
+            'message' => 'Photo de profil mise à jour',
+        ], 200);
+    }
+
+    /**
+     * Supprimer le compte
+     */
+    public function destroy(Request $request)
     {
         $user = Auth::user();
 
