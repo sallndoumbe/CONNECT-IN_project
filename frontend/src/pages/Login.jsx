@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '../hooks/useAuth'
 import { Error, Input, Button } from '../components/UI'
 
 export function Login() {
+  const { t } = useTranslation()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -28,28 +30,28 @@ export function Login() {
 
   return (
     <div className="flex min-h-screen items-center justify-center px-6 py-12 bg-gradient-to-br from-[#f6f1e9] via-[#fdfaf5] to-[#f6f1e9]">
-      <div className="fade-in w-full max-w-md rounded-3xl bg-white p-10 shadow-2xl border border-[#e2d9cf]">
-        <div className="mb-8 text-center">
-          <div className="inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-gradient-to-br from-[#1f3b3b] to-[#2d5555] text-lg font-bold text-[#f6f1e9] shadow-xl mb-4">
+      <div className="fade-in w-full max-w-2xl rounded-3xl bg-white p-16 shadow-2xl border border-[#e2d9cf]">
+        <div className="mb-12 text-center">
+          <div className="inline-flex h-24 w-24 items-center justify-center rounded-3xl bg-gradient-to-br from-[#1f3b3b] to-[#2d5555] text-3xl font-bold text-[#f6f1e9] shadow-xl mb-6">
             CI
           </div>
-          <h1 className="text-3xl font-bold text-[#1f3b3b] mb-2">Connexion</h1>
-          <p className="text-sm text-[#4a4a4a]">Content de te revoir ! 👋</p>
+          <h1 className="text-5xl font-bold text-[#1f3b3b] mb-3">{t('auth.login')}</h1>
+          <p className="text-lg text-[#4a4a4a]">{t('auth.loginSubtitle')}</p>
         </div>
 
         {error && <Error message={error} />}
 
-        <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <Input
-            label="Email"
+            label={t('auth.email')}
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="ton@email.com"
+            placeholder="email@example.com"
             required
           />
           <Input
-            label="Mot de passe"
+            label={t('auth.password')}
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -60,21 +62,16 @@ export function Login() {
             type="submit"
             disabled={loading}
             className="w-full"
+            size="lg"
           >
-            {loading ? 'Connexion...' : 'Se connecter'}
+            {loading ? `${t('messages.loading')}` : t('auth.loginButton')}
           </Button>
         </form>
 
-        <div className="mt-6 text-center">
-          <Link to="/forgot-password" className="text-sm text-[#1f3b3b] hover:text-[#2d5555] font-medium hover:underline transition-colors">
-            Mot de passe oublié ? 🔑
-          </Link>
-        </div>
-
-        <div className="mt-6 text-center text-sm text-[#4a4a4a]">
-          Pas encore de compte ?{' '}
+        <div className="mt-8 text-center text-base text-[#4a4a4a]">
+          {t('auth.noAccount')}{' '}
           <Link to="/register" className="font-bold text-[#1f3b3b] hover:text-[#2d5555] hover:underline transition-colors">
-            S'inscrire
+            {t('auth.registerLink')}
           </Link>
         </div>
       </div>
