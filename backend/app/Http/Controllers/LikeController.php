@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
-    /**
-     * Liker un post
-     */
+     /* Liker un post */
     public function store($post_id)
     {
         $post = Post::find($post_id);
@@ -37,6 +35,18 @@ class LikeController extends Controller
             'user_id' => Auth::id(),
         ]);
 
+        // Créer une notification si ce n'est pas son propre post
+        if ($post->user_id !== Auth::id()) {
+            NotificationController::notify(
+                $post->user_id,
+                Auth::id(),
+                'like',
+                'Nouveau like',
+                Auth::user()->firstname . ' a aimé votre post',
+                $post_id
+            );
+        }
+
         $likesCount = Like::where('post_id', $post_id)->count();
 
         return response()->json([
@@ -45,9 +55,7 @@ class LikeController extends Controller
         ], 201);
     }
 
-    /**
-     * Retirer un like d'un post
-     */
+     /* Retirer un like d'un post*/
     public function destroy($post_id)
     {
         $post = Post::find($post_id);
