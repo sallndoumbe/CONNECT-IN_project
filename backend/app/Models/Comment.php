@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comment extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'post_id',
@@ -15,17 +16,14 @@ class Comment extends Model
         'content',
     ];
 
-    /**
-     * Relation : Post commenté
-     */
+    
+     /* Relation : Post commenté */
     public function post()
     {
         return $this->belongsTo(Post::class);
     }
 
-    /**
-     * Relation : Auteur du commentaire
-     */
+    /* Relation : Auteur du commentaire */
     public function user()
     {
         return $this->belongsTo(User::class);
