@@ -53,14 +53,14 @@ export function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#f6f1e9] to-[#fdfaf5]">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-32 fade-in">
+        <div className="mb-48 fade-in">
           <h1 className="text-5xl font-bold text-[#1f3b3b] mb-8 bg-gradient-to-r from-[#1f3b3b] to-[#2d5555] bg-clip-text text-transparent">
             {t('home.title')}
           </h1>
           <p className="text-lg text-[#4a4a4a]">{t('home.subtitle')}</p>
         </div>
         
-        <div className="mb-20">
+        <div className="mb-32">
           <CreatePost onPostCreated={handlePostCreated} />
         </div>
 
