@@ -50,25 +50,25 @@ export function Header() {
           {user ? (
             <>
               <NotificationBell />
-              <div className="hidden sm:flex items-center gap-3 px-4 py-2 rounded-xl bg-gradient-to-r from-[#f6f1e9] to-[#fdfaf5] border border-[#e2d9cf]">
+              <div className="hidden sm:flex items-center gap-4 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#f6f1e9] to-[#fdfaf5] border border-[#e2d9cf]">
                 {user.profile_picture ? (
                   <img
                     src={`${import.meta.env.VITE_API_URL}/storage/${user.profile_picture}`}
                     alt={`${user.firstname} ${user.lastname}`}
-                    className="h-8 w-8 rounded-full object-cover shadow-md"
+                    className="h-10 w-10 rounded-full object-cover shadow-md"
                   />
                 ) : (
-                  <div className="h-8 w-8 rounded-full bg-gradient-to-br from-[#1f3b3b] to-[#2d5555] flex items-center justify-center text-white text-xs font-bold shadow-md">
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-[#1f3b3b] to-[#2d5555] flex items-center justify-center text-white font-bold shadow-md">
                     {user.firstname?.[0]}{user.lastname?.[0]}
                   </div>
                 )}
-                <span className="text-sm font-semibold text-[#1f3b3b]">
+                <span className="text-base font-semibold text-[#1f3b3b]">
                   {user.firstname} {user.lastname}
                 </span>
               </div>
               <button
                 onClick={handleLogout}
-                className="rounded-xl bg-gradient-to-r from-[#1f3b3b] to-[#2d5555] px-5 py-2.5 text-xs font-bold text-[#f6f1e9] hover:from-[#0f2f2f] hover:to-[#1f3b3b] shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+                className="rounded-xl bg-gradient-to-r from-[#1f3b3b] to-[#2d5555] px-6 py-2.5 text-sm font-bold text-[#f6f1e9] hover:from-[#0f2f2f] hover:to-[#1f3b3b] shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
               >
                 {t('header.logout')}
               </button>
@@ -76,7 +76,7 @@ export function Header() {
           ) : (
             <Link
               to="/login"
-              className="rounded-xl bg-gradient-to-r from-[#1f3b3b] to-[#2d5555] px-5 py-2.5 text-xs font-bold text-[#f6f1e9] hover:from-[#0f2f2f] hover:to-[#1f3b3b] shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              className="rounded-xl bg-gradient-to-r from-[#1f3b3b] to-[#2d5555] px-6 py-2.5 text-sm font-bold text-[#f6f1e9] hover:from-[#0f2f2f] hover:to-[#1f3b3b] shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
             >
               {t('header.login')}
             </Link>
