@@ -1,0 +1,111 @@
+{
+  "header": {
+    "appName": "Connect'In",
+    "feed": "Feed",
+    "profile": "Perfil",
+    "logout": "Cerrar sesión",
+    "login": "Iniciar sesión"
+  },
+  "home": {
+    "title": "Feed de noticias ✨",
+    "subtitle": "Descubre lo que comparten tus amigos",
+    "noPost": "No hay publicaciones aún",
+    "beFirst": "¡Sé el primero en publicar algo!"
+  },
+  "post": {
+    "create": "Crear publicación",
+    "placeholder": "¿Qué estás pensando?",
+    "publish": "Publicar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "deleteConfirm": "¿Eliminar esta publicación?",
+    "save": "Guardar",
+    "comments": "comentario(s)",
+    "likes": "Me gusta",
+    "addImage": "Añadir imagen",
+    "removeImage": "Quitar imagen"
+  },
+  "comment": {
+    "add": "Añadir comentario",
+    "placeholder": "Escribe un comentario...",
+    "delete": "Eliminar",
+    "deleteConfirm": "¿Eliminar este comentario?"
+  },
+  "profile": {
+    "title": "Mi Perfil 👤",
+    "subtitle": "Gestiona tu información personal",
+    "profilePicture": "Foto de perfil",
+    "personalInfo": "Información personal",
+    "firstname": "Nombre",
+    "lastname": "Apellido",
+    "email": "Correo electrónico",
+    "bio": "Bio",
+    "changePassword": "Cambiar contraseña",
+    "currentPassword": "Contraseña actual",
+    "newPassword": "Nueva contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "updateProfile": "Actualizar",
+    "deleteAccount": "Eliminar cuenta",
+    "deleteAccountConfirm": "¿Estás seguro de que deseas eliminar tu cuenta? Esta acción es irreversible.",
+    "uploadPhoto": "Elegir foto",
+    "uploadHint": "JPG, PNG o GIF (máx 5MB)",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "uploading": "Subiendo..."
+  },
+  "auth": {
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "firstname": "Nombre",
+    "lastname": "Apellido",
+    "loginButton": "Iniciar sesión",
+    "registerButton": "Registrarse",
+    "noAccount": "¿No tienes cuenta?",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "registerLink": "¡Regístrate!",
+    "loginLink": "¡Inicia sesión!",
+    "welcome": "Bienvenido a Connect'In",
+    "loginSubtitle": "Inicia sesión para unirte a la comunidad",
+    "registerSubtitle": "Crea tu cuenta y comienza a compartir"
+  },
+  "notifications": {
+    "title": "Notificaciones",
+    "markAllRead": "Marcar todo como leído",
+    "noNotifications": "No hay notificaciones",
+    "liked": "le gustó tu publicación",
+    "commented": "comentó en tu publicación",
+    "followed": "comenzó a seguirte",
+    "justNow": "Justo ahora",
+    "minutesAgo": "Hace {{count}} min",
+    "hoursAgo": "Hace {{count}}h",
+    "daysAgo": "Hace {{count}}d"
+  },
+  "search": {
+    "placeholder": "Buscar publicaciones...",
+    "filters": "Filtros",
+    "sortBy": "Ordenar por",
+    "latest": "Más recientes",
+    "popular": "Más populares",
+    "period": "Período",
+    "from": "Desde",
+    "to": "Hasta",
+    "reset": "Restablecer filtros"
+  },
+  "messages": {
+    "success": "Éxito",
+    "error": "Error",
+    "loading": "Cargando...",
+    "profileUpdated": "Perfil actualizado exitosamente",
+    "passwordChanged": "Contraseña cambiada exitosamente",
+    "photoUpdated": "¡Foto de perfil actualizada exitosamente!",
+    "postCreated": "Publicación creada exitosamente",
+    "postUpdated": "Publicación actualizada",
+    "postDeleted": "Publicación eliminada",
+    "commentAdded": "Comentario añadido",
+    "commentDeleted": "Comentario eliminado"
+  }
+}

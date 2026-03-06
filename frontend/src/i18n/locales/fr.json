@@ -1,0 +1,111 @@
+{
+  "header": {
+    "appName": "Connect'In",
+    "feed": "Fil",
+    "profile": "Profil",
+    "logout": "Déconnecter",
+    "login": "Connexion"
+  },
+  "home": {
+    "title": "Fil d'actualité ✨",
+    "subtitle": "Découvre ce que tes amis partagent",
+    "noPost": "Aucun post pour le moment",
+    "beFirst": "Sois le premier à publier quelque chose !"
+  },
+  "post": {
+    "create": "Créer un post",
+    "placeholder": "Quoi de neuf ?",
+    "publish": "Publier",
+    "cancel": "Annuler",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "deleteConfirm": "Supprimer ce post ?",
+    "save": "Enregistrer",
+    "comments": "commentaire(s)",
+    "likes": "J'aime",
+    "addImage": "Ajouter une image",
+    "removeImage": "Retirer l'image"
+  },
+  "comment": {
+    "add": "Ajouter un commentaire",
+    "placeholder": "Écris un commentaire...",
+    "delete": "Supprimer",
+    "deleteConfirm": "Supprimer ce commentaire ?"
+  },
+  "profile": {
+    "title": "Mon Profil 👤",
+    "subtitle": "Gère tes informations personnelles",
+    "profilePicture": "Photo de profil",
+    "personalInfo": "Informations personnelles",
+    "firstname": "Prénom",
+    "lastname": "Nom",
+    "email": "Email",
+    "bio": "Bio",
+    "changePassword": "Changer le mot de passe",
+    "currentPassword": "Mot de passe actuel",
+    "newPassword": "Nouveau mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "updateProfile": "Mettre à jour",
+    "deleteAccount": "Supprimer le compte",
+    "deleteAccountConfirm": "Es-tu sûr de vouloir supprimer ton compte ? Cette action est irréversible.",
+    "uploadPhoto": "Choisir une photo",
+    "uploadHint": "JPG, PNG ou GIF (max 5MB)",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "uploading": "Envoi en cours..."
+  },
+  "auth": {
+    "login": "Connexion",
+    "register": "Inscription",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "firstname": "Prénom",
+    "lastname": "Nom",
+    "loginButton": "Se connecter",
+    "registerButton": "S'inscrire",
+    "noAccount": "Pas encore de compte ?",
+    "hasAccount": "Déjà un compte ?",
+    "registerLink": "Inscris-toi !",
+    "loginLink": "Connecte-toi !",
+    "welcome": "Bienvenue sur Connect'In",
+    "loginSubtitle": "Connecte-toi pour rejoindre la communauté",
+    "registerSubtitle": "Crée ton compte et commence à partager"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Tout marquer comme lu",
+    "noNotifications": "Aucune notification",
+    "liked": "a aimé votre post",
+    "commented": "a commenté votre post",
+    "followed": "a commencé à vous suivre",
+    "justNow": "À l'instant",
+    "minutesAgo": "Il y a {{count}} min",
+    "hoursAgo": "Il y a {{count}} h",
+    "daysAgo": "Il y a {{count}} j"
+  },
+  "search": {
+    "placeholder": "Rechercher des posts...",
+    "filters": "Filtres",
+    "sortBy": "Trier par",
+    "latest": "Plus récents",
+    "popular": "Plus populaires",
+    "period": "Période",
+    "from": "Du",
+    "to": "Au",
+    "reset": "Réinitialiser les filtres"
+  },
+  "messages": {
+    "success": "Succès",
+    "error": "Erreur",
+    "loading": "Chargement...",
+    "profileUpdated": "Profil mis à jour avec succès",
+    "passwordChanged": "Mot de passe changé avec succès",
+    "photoUpdated": "Photo de profil mise à jour avec succès !",
+    "postCreated": "Post créé avec succès",
+    "postUpdated": "Post mis à jour",
+    "postDeleted": "Post supprimé",
+    "commentAdded": "Commentaire ajouté",
+    "commentDeleted": "Commentaire supprimé"
+  }
+}

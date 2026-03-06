@@ -1,0 +1,111 @@
+{
+  "header": {
+    "appName": "Connect'In",
+    "feed": "Feed",
+    "profile": "Profile",
+    "logout": "Logout",
+    "login": "Login"
+  },
+  "home": {
+    "title": "News Feed ✨",
+    "subtitle": "Discover what your friends are sharing",
+    "noPost": "No posts yet",
+    "beFirst": "Be the first to post something!"
+  },
+  "post": {
+    "create": "Create a post",
+    "placeholder": "What's on your mind?",
+    "publish": "Publish",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteConfirm": "Delete this post?",
+    "save": "Save",
+    "comments": "comment(s)",
+    "likes": "Likes",
+    "addImage": "Add image",
+    "removeImage": "Remove image"
+  },
+  "comment": {
+    "add": "Add a comment",
+    "placeholder": "Write a comment...",
+    "delete": "Delete",
+    "deleteConfirm": "Delete this comment?"
+  },
+  "profile": {
+    "title": "My Profile 👤",
+    "subtitle": "Manage your personal information",
+    "profilePicture": "Profile picture",
+    "personalInfo": "Personal information",
+    "firstname": "First name",
+    "lastname": "Last name",
+    "email": "Email",
+    "bio": "Bio",
+    "changePassword": "Change password",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "updateProfile": "Update",
+    "deleteAccount": "Delete account",
+    "deleteAccountConfirm": "Are you sure you want to delete your account? This action is irreversible.",
+    "uploadPhoto": "Choose photo",
+    "uploadHint": "JPG, PNG or GIF (max 5MB)",
+    "save": "Save",
+    "cancel": "Cancel",
+    "uploading": "Uploading..."
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Sign up",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "firstname": "First name",
+    "lastname": "Last name",
+    "loginButton": "Sign in",
+    "registerButton": "Sign up",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "registerLink": "Sign up!",
+    "loginLink": "Sign in!",
+    "welcome": "Welcome to Connect'In",
+    "loginSubtitle": "Sign in to join the community",
+    "registerSubtitle": "Create your account and start sharing"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark all as read",
+    "noNotifications": "No notifications",
+    "liked": "liked your post",
+    "commented": "commented on your post",
+    "followed": "started following you",
+    "justNow": "Just now",
+    "minutesAgo": "{{count}} min ago",
+    "hoursAgo": "{{count}}h ago",
+    "daysAgo": "{{count}}d ago"
+  },
+  "search": {
+    "placeholder": "Search posts...",
+    "filters": "Filters",
+    "sortBy": "Sort by",
+    "latest": "Latest",
+    "popular": "Most popular",
+    "period": "Period",
+    "from": "From",
+    "to": "To",
+    "reset": "Reset filters"
+  },
+  "messages": {
+    "success": "Success",
+    "error": "Error",
+    "loading": "Loading...",
+    "profileUpdated": "Profile updated successfully",
+    "passwordChanged": "Password changed successfully",
+    "photoUpdated": "Profile picture updated successfully!",
+    "postCreated": "Post created successfully",
+    "postUpdated": "Post updated",
+    "postDeleted": "Post deleted",
+    "commentAdded": "Comment added",
+    "commentDeleted": "Comment deleted"
+  }
+}
