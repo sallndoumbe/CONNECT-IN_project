@@ -51,49 +51,55 @@ export function Home() {
   }
 
   return (
-    <div className="mx-auto max-w-2xl px-6 py-8">
-      <div className="mb-8 fade-in">
-        <h1 className="text-4xl font-bold text-[#1f3b3b] mb-2 bg-gradient-to-r from-[#1f3b3b] to-[#2d5555] bg-clip-text text-transparent">
-          {t('home.title')}
-        </h1>
-        <p className="text-[#4a4a4a]">{t('home.subtitle')}</p>
-      </div>
-      
-      <CreatePost onPostCreated={handlePostCreated} />
-
-      <SearchAndFilters 
-        onSearch={(term) => console.log('Search:', term)} 
-        onFilter={handleFilterChange}
-      />
-
-      {error && <Error message={error} />}
-
-      {loading ? (
-        <Loading />
-      ) : (
-        <div className="mt-8 space-y-6">
-          {posts.length === 0 ? (
-            <div className="fade-in rounded-3xl border-2 border-dashed border-[#e2d9cf] bg-gradient-to-br from-white to-[#fdfaf5] p-12 text-center shadow-lg">
-              <div className="text-6xl mb-4">📝</div>
-              <p className="text-lg font-semibold text-[#1f3b3b] mb-2">
-                {t('home.noPost')}
-              </p>
-              <p className="text-[#4a4a4a]">
-                {t('home.beFirst')}
-              </p>
-            </div>
-          ) : (
-            posts.map((post) => (
-              <PostCard
-                key={post.id}
-                post={post}
-                onDelete={handlePostDeleted}
-                onUpdate={handlePostUpdated}
-              />
-            ))
-          )}
+    <div className="min-h-screen bg-gradient-to-b from-[#f6f1e9] to-[#fdfaf5]">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
+        <div className="mb-32 fade-in">
+          <h1 className="text-5xl font-bold text-[#1f3b3b] mb-8 bg-gradient-to-r from-[#1f3b3b] to-[#2d5555] bg-clip-text text-transparent">
+            {t('home.title')}
+          </h1>
+          <p className="text-lg text-[#4a4a4a]">{t('home.subtitle')}</p>
         </div>
-      )}
+        
+        <div className="mb-20">
+          <CreatePost onPostCreated={handlePostCreated} />
+        </div>
+
+        <div className="mb-16">
+          <SearchAndFilters 
+            onSearch={(term) => console.log('Search:', term)} 
+            onFilter={handleFilterChange}
+          />
+        </div>
+
+        {error && <Error message={error} />}
+
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="mt-16 space-y-8">
+            {posts.length === 0 ? (
+              <div className="fade-in rounded-3xl border-2 border-dashed border-[#e2d9cf] bg-gradient-to-br from-white to-[#fdfaf5] p-16 text-center shadow-lg">
+                <div className="text-7xl mb-6">📝</div>
+                <p className="text-2xl font-semibold text-[#1f3b3b] mb-3">
+                  {t('home.noPost')}
+                </p>
+                <p className="text-lg text-[#4a4a4a]">
+                  {t('home.beFirst')}
+                </p>
+              </div>
+            ) : (
+              posts.map((post) => (
+                <PostCard
+                  key={post.id}
+                  post={post}
+                  onDelete={handlePostDeleted}
+                  onUpdate={handlePostUpdated}
+                />
+              ))
+            )}
+          </div>
+        )}
+      </div>
     </div>
   )
 }
